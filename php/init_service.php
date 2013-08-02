@@ -16,16 +16,20 @@ mysql_select_db('amazoor_stolbik');
 $query = "SELECT `coins` FROM `amazoor_stolbik`.`users_vk` WHERE `id` = '$vk_id';";
 $res = mysql_query($query);
 
- while($row = mysql_fetch_array($res))
- {
- 	$coins = $row['coins'];
- }
+while ($row = mysql_fetch_array($res)) {
+    $coins = $row['coins'];
+}
 
 mysql_close($link);
 
-$digits = array($digit0, $digit1, $digit2, $coins);
+$result = array(
+    "digit0" => $digit0,
+    "digit1" => $digit1,
+    "digit2" => $digit2,
+    "coins" => $coins
+);
 
-echo json_encode($digits);
+echo json_encode($result);
 
 header("Access-Control-Allow-Origin: *");
 ?>

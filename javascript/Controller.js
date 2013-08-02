@@ -22,7 +22,8 @@ function Controller(canvasId) {
         paytableButton: "images/paytable_button.png",
         keypadBG: "images/keypad_bg.png",
         bg: "images/bg.png",
-        spinButtonOver: "images/spin_over.png"
+        spinButtonOver: "images/spin_over.png",
+        noCoins: "images/no_coins.png"
     };
 
     this.images = {};
@@ -44,7 +45,7 @@ function Controller(canvasId) {
 }
 
 Controller.prototype.loadImages = function () {
-    this.view.canvas.style.background = "url('../images/bg_load.png')";
+    this.view.canvas.style.background = "url('images/bg_load.png')";
     var that = this;
 
     var loadedImages = 0;
@@ -95,9 +96,14 @@ Controller.prototype.addClickListeners = function () {
         switch (target) {
             case "spinButton":
                 if (!that.model.isSpinning) {
-                    that.model.isSpinning = true;
-                    that.view.startDigitAnimation();
-                    that.model.spin();
+                    if (that.model.coins != 0) {
+                        that.model.isSpinning = true;
+                        that.view.startDigitAnimation();
+                        that.model.spin();
+                    } else {
+                        that.model.noCoins = true;
+                        that.view.updateView();
+                    }
                 }
                 break;
 

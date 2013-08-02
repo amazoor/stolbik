@@ -5,7 +5,7 @@ $digit0 = rand(0, 9);
 $digit1 = rand(0, 9);
 $digit2 = rand(0, 9);
 $win = getWin($digit0, $digit1, $digit2);
-$digits = array($digit0, $digit1, $digit2, $win, $matrix, getCoins());
+$result = array("digit0" => $digit0, "digit1" => $digit1, "digit2" => $digit2, "win" => $win, "matrix" => $matrix, "coins" => getCoins());
 $matrix = "111";
 $error = null;
 
@@ -87,7 +87,7 @@ function chekOtherCombinations($d0, $d1, $d2)
 }
 
 
-echo json_encode($digits);
+echo json_encode($result);
 header("Access-Control-Allow-Origin: *");
 
 ?>

@@ -39,6 +39,13 @@ StolbikView.prototype.drawDigits = function () {
     }
 }
 
+StolbikView.prototype.showNoCoinsPopup = function() {
+    var popup = this.controller.images['noCoins'];
+    popup.x = this.canvas.width * .5 - popup.width * .5;
+    popup.y = this.canvas.height * .5 - popup.height * .5;
+    popup.draw(popup.x, popup.y);
+}
+
 StolbikView.prototype.drawAnitation = function () {
     if (++this.currentD > 5)
         this.currentD = 0;
@@ -74,6 +81,8 @@ StolbikView.prototype.updateView = function () {
     }
     this.drawTexts();
     this.showPaytable();
+    if (this.model.noCoins)
+        this.showNoCoinsPopup();
 }
 
 StolbikView.prototype.showPaytable = function () {

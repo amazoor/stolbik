@@ -8,7 +8,7 @@ function StolbikModel(controller) {
     this.winMatrix = "000";
     this.isPaytable = false;
     this.isSpinning = false;
-
+    this.isNoCoins = false;
     this.spinResponce = new SpinResponceData();
 }
 
@@ -20,10 +20,10 @@ StolbikModel.prototype.init = function() {
         if (request.readyState == 4 && request.status == 200) {
             var data = JSON.parse(request.responseText);
 
-            that.digit0 = "digit"+data[0];
-            that.digit1 = "digit"+data[1];
-            that.digit2 = "digit"+data[2];
-            that.coins = data[3];
+            that.digit0 = "digit"+data['digit0'];
+            that.digit1 = "digit"+data['digit1'];
+            that.digit2 = "digit"+data['digit2'];
+            that.coins = data['coins'];
             that.controller.initResponceReceived();
         }
     };
@@ -38,16 +38,16 @@ StolbikModel.prototype.spin = function() {
         if (request.readyState == 4 && request.status == 200) {
             var data = JSON.parse(request.responseText);
 
-            that.digit0 = "digit"+data[0];
-            that.digit1 = "digit"+data[1];
-            that.digit2 = "digit"+data[2];
+            that.digit0 = "digit"+data['digit0'];
+            that.digit1 = "digit"+data['digit1'];
+            that.digit2 = "digit"+data['digit2'];
 
-            that.spinResponce.winCoins = data[3];
-            that.spinResponce.coins = data[5];
+            that.spinResponce.winCoins = data['win'];
+            that.spinResponce.coins = data['coins'];
 
             that.winCoins = 0;
-            that.winMatrix = data[4];
-            that.spinResponce.winMatrix = data[4];
+            that.winMatrix = data['matrix'];
+            that.spinResponce.winMatrix = data['matrix'];
             that.coins = that.coins - 1;
             that.controller.spinResponceReceived();
 
