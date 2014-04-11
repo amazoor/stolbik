@@ -1,5 +1,5 @@
 <?php
-$vk_id = $_GET['vk_id'];
+$vk_id = $_GET['vk_ida'];
 
 $digit0 = rand(0, 9);
 $digit1 = rand(0, 9);
